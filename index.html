@@ -14,11 +14,13 @@
     <link rel="stylesheet" type="text/css" href="api/api.css">
 
 <!-- AnalyticsCode -->
-    <script type="text/javascript">
-        
-        window.startGame = function(){
-            console.log("startGame")
-        }
+window.startGame = function() {
+    console.log("startGame");
+    FabPlayService.initialize({
+        gameId: "932BF",
+        gameSecret: "WCPYBR4JQMND8A63Z3DSGUMXO5I6W9AKAE95DQFQWFUPW1CUG8"
+    });
+}
 
 window.endGame = function(name, score, coin) {
     console.log("endGame. Score: " + score + ", coins: " + coin + ", Name: " + name);
@@ -29,9 +31,22 @@ window.endGame = function(name, score, coin) {
     var scoreData = window.showScore();
     console.log("Score Data:", scoreData);
 
-    // Add any additional logic you need when the game ends
+    // Save the score data to FabPlayService
+    FabPlayService.saveGameData({
+        key: "score",
+        value: JSON.stringify(scoreData)
+    })
+    .then(response => {
+        console.log('Score data saved successfully');
+        // Add any additional logic you need when the game ends
+    })
+    .catch(error => {
+        console.error('Error saving score data:', error);
+        // Handle the error appropriately
+    });
 }
-    </script>
+
+    <script src="https://fabplayservice.fabplay.net/html/v1.0.0/fabplayservice.js"></script>
 
 <!-- APICode -->
 </head>
