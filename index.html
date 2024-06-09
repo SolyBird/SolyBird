@@ -20,12 +20,17 @@
             console.log("startGame")
         }
 
-        window.endGame = function(name, score, coin){
-            console.log("endGame. Score: "+score+", coins: "+coin+", Name: "+name);
-            window.SCORE_DATA.name = name;
-            window.SCORE_DATA.score = score;
-        }
+window.endGame = function(name, score, coin) {
+    console.log("endGame. Score: " + score + ", coins: " + coin + ", Name: " + name);
+    window.SCORE_DATA.name = name;
+    window.SCORE_DATA.score = score;
 
+    // Log the score data to the console
+    var scoreData = window.showScore();
+    console.log("Score Data:", scoreData);
+
+    // Add any additional logic you need when the game ends
+}
     </script>
 
 <!-- APICode -->
